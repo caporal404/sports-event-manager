@@ -1,0 +1,1 @@
+# sports-event-manager : Gestionnaire d'Évènements Sportifs
