@@ -8,8 +8,8 @@
     --main-color: #535bf2;
 }
 
-main {
-    height: calc(100vh - var(--header-height));
+.App {
+    height: 100vh;
     display: flex;
 }
 
@@ -18,7 +18,7 @@ main {
 }
 
 .left {
-    width: 300px;
+    width: auto;
 }
 
 .right {
