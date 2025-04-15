@@ -1,0 +1,48 @@
+[
+    {
+        "name": "Basketball",
+        "roles": [
+            "Meneur",
+            "Arrière",
+            "Ailier",
+            "Ailier fort",
+            "Pivot"
+        ]
+    },
+    {
+        "name": "Volley-ball",
+        "roles": [
+            "Passeur",
+            "Attaquant",
+            "Central",
+            "Libéro",
+            "Récepteur-attaquant"
+        ]
+    },
+    {
+        "name": "Football",
+        "roles": [
+            "Gardien",
+            "Défenseur",
+            "Milieu",
+            "Attaquant"
+        ]
+    },
+    {
+        "name": "Tennis",
+        "roles": [
+            "Simple",
+            "Double"
+        ]
+    },
+    {
+        "name": "Handball",
+        "roles": [
+            "Gardien",
+            "Arrière",
+            "Ailier",
+            "Demi-centre",
+            "Pivot"
+        ]
+    }
+]
