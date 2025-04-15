@@ -32,7 +32,7 @@ const PlayerProvider = ({ children }) => {
                 addPlayer, 
                 removePlayer,
                 currentPlayer,
-                changeCurrentPlayer 
+                changeCurrentPlayer  
             }}
         >
             {children}
