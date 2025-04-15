@@ -1,17 +1,18 @@
-// import '../assets/icons/fontawesome.min.css';
+import '../styles/App.css';
+import Left from './Left';
+import Right from './Right';
 import Header from './Header';
 import ControlPanel from './ControlPanel';
-import '../styles/App.css';
 
 const App = () => {
   return (
       <div className='App'>
-        <div className="left">
+        <Left>
           <ControlPanel />
-        </div>
-        <div className="right">
+        </Left>
+        <Right>
           <Header />
-        </div>
+        </Right>
       </div>
   );
 };
