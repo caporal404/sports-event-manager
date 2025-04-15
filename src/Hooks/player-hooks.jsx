@@ -3,7 +3,6 @@
 import { createContext, useContext, useState } from 'react';
 
 const PlayerContext = createContext();
-
 export const usePlayers = () => useContext(PlayerContext);
 
 const PlayerProvider = ({ children }) => {
@@ -33,8 +32,7 @@ const PlayerProvider = ({ children }) => {
                 removePlayer,
                 currentPlayer,
                 changeCurrentPlayer  
-            }}
-        >
+        }}>
             {children}
         </PlayerContext.Provider>
     )

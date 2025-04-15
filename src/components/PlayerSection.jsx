@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 
-const PlayerSection = () => {
+const PlayerSection = ({ children }) => {
     return (
         <section className="player-section">
-            
+            {children}
         </section>
     )
 }
