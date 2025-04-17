@@ -6,11 +6,8 @@ import ControlPanel from './ControlPanel';
 import ViewProvider from '../hooks/view-hooks';
 import PlayerProvider from '../hooks/player-hooks';
 import PlayerSection from './PlayerSection';
-import AddPlayerForm from './AddPlayerForm';
 
 const App = () => {
-  // const { showPlayerSection } = useViews();
-
   return (
     <div className='App'>
         <Left>
@@ -22,9 +19,7 @@ const App = () => {
           <Header />
           <ViewProvider>
             <PlayerProvider>
-              <PlayerSection>
-                <AddPlayerForm/>
-              </PlayerSection>
+              <PlayerSection />
             </PlayerProvider>
           </ViewProvider>
         </Right>
