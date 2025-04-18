@@ -1,4 +1,6 @@
 .section {
+    container-type: inline-size;
+    container-name: section;
     height: calc(100% - var(--header-height));
     display: flex;
 }

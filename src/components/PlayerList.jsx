@@ -7,13 +7,15 @@ const PlayerList = () => {
     const { players } = usePlayers();
 
     return (
-        <SubSection className="player-list">
+        <SubSection className="current player-list">
             <table>
-            {
-                players.map((player, index) => (
-                    <Player key={`player-${index}`} {...player} />
-                ))
-            }
+                <tbody>
+                {
+                    players.map((player, index) => (
+                        <Player key={`player-${index}`} {...player} />
+                    ))
+                }
+                </tbody>
             </table>
         </SubSection>
     )

@@ -3,17 +3,21 @@ import {} from 'react';
 import '../styles/Player.css';
 
 const Player = ({ picture, ...data }) => {
-  // console.log(picture);
   return (
-    <div className="player">
+    <tr className="player">
+      <td className='picture'>
         <img src={picture} alt="Photo du joueur" />
-        {
-            Object.entries(data).map(([param, value]) => (
-                // console.log(`${param}: ${data[param]}`)
-                <p key={param} className={param}>{value}</p>
-            ))
-        }
-    </div>
+      </td>
+      {
+        Object.entries(data).map(([param, value]) => (
+          <td key={param} className={param}>{value}</td>
+        ))
+      }
+      <td className="actions">
+        <button className="">Modifier</button>
+        <button className="">Supprimer</button>
+      </td>
+    </tr>
   )
 }
 

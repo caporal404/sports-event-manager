@@ -1,9 +1,10 @@
 :root {
-    --panel-width: 250px;
+    --panel-width: 200px;
 }
 
 .control-panel {
     position: relative;
+    z-index: 10;
     height: 100%;
     width: var(--panel-width);
     transition: 300ms;
