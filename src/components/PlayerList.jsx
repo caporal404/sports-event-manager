@@ -8,11 +8,13 @@ const PlayerList = () => {
 
     return (
         <SubSection className="player-list">
-        {
-            players.map((player, index) => (
-                <Player key={`player-${index}`} {...player} />
-            ))
-        }
+            <table>
+            {
+                players.map((player, index) => (
+                    <Player key={`player-${index}`} {...player} />
+                ))
+            }
+            </table>
         </SubSection>
     )
 }

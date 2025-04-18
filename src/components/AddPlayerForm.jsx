@@ -8,6 +8,7 @@ import '../styles/PlayerForm.css';
 // eslint-disable-next-line no-unused-vars
 const AddPlayerForm = ({ onAddPlayer }) => {
   const [playerData, setPlayerData] = useState({
+    id: '',
     name: '',
     age: '',
     sex: '',
@@ -20,7 +21,7 @@ const AddPlayerForm = ({ onAddPlayer }) => {
     strength: '',
     endurance: ''
   });
-  const { addPlayer } = usePlayers();
+  const { players, addPlayer } = usePlayers();
 
 
   const handleChange = e => {
@@ -31,13 +32,10 @@ const AddPlayerForm = ({ onAddPlayer }) => {
     });
   };
 
-  // const [pictureUrl, setPictureUrl] = useState('');
   const handlePictureChange = e => {
     const file = e.target.files[0];
     if (file && file.type.startsWith('image/')) {
         const url = URL.createObjectURL(file);
-        // setPictureUrl(url);
-        // console.log(url);
         setPlayerData({
             ...playerData,
             picture: url
@@ -55,6 +53,7 @@ const AddPlayerForm = ({ onAddPlayer }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    playerData.id = players.length;
     addPlayer(playerData);
     // onAddPlayer();
     e.target.reset();

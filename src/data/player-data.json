@@ -1,15 +1,16 @@
 [
     {
-        "name": "Kevin",
-        "age": "19",
-        "sex": "Masculin",
-        "picture": "blob:http://localhost:5173/83aaf30d-dcf8-4daf-9857-37633d99e55b",
-        "sport": "Basketball",
-        "role": "Meneur",
-        "weight": "58",
-        "height": "170",
-        "speed": "5",
-        "strength": "30",
-        "endurance": "300"
-      }
+      "id": "0",
+      "name": "Kevin",
+      "age": "19",
+      "sex": "Masculin",
+      "picture": "blob:http://localhost:5173/83aaf30d-dcf8-4daf-9857-37633d99e55b",
+      "sport": "Basketball",
+      "role": "Meneur",
+      "weight": "58",
+      "height": "170",
+      "speed": "5",
+      "strength": "30",
+      "endurance": "300"
+    }
 ]
