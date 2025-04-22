@@ -6,22 +6,27 @@ import SubSection from './SubSection';
 import '../styles/PlayerForm.css';
 
 // eslint-disable-next-line no-unused-vars
-const AddPlayerForm = ({ onAddPlayer }) => {
-  const [playerData, setPlayerData] = useState({
-    id: '',
-    name: '',
-    age: '',
-    sex: '',
-    picture: '',
-    sport: '',
-    role: '',
-    weight: '',
-    height: '',
-    speed: '',
-    strength: '',
-    endurance: ''
+const AddPlayerForm = ({ data, onAddPlayer }) => {
+  const { modifiedPlayer, updatePlayer, addPlayer, returnFromPreviousSection } = usePlayers();
+  
+  const [playerData, setPlayerData] = useState(
+    modifiedPlayer || 
+    {
+      id: '',
+      name: '',
+      age: '',
+      sex: '',
+      picture: '',
+      sport: sportData[0].name, // Sport par défaut - Basketball
+      role: sportData[0].roles[0],  // Poste par défaut - Meneur
+      weight: '',
+      height: '',
+      speed: '',
+      strength: '',
+      endurance: ''
   });
-  const { players, addPlayer } = usePlayers();
+
+  // console.log(playerData);
 
 
   const handleChange = e => {
@@ -35,28 +40,34 @@ const AddPlayerForm = ({ onAddPlayer }) => {
   const handlePictureChange = e => {
     const file = e.target.files[0];
     if (file && file.type.startsWith('image/')) {
-        const url = URL.createObjectURL(file);
-        setPlayerData({
-            ...playerData,
-            picture: url
-        })
+      const url = URL.createObjectURL(file);
+      setPlayerData({
+        ...playerData,
+        picture: url
+      })
     }
   }
 
-  const [currentRoles, setCurrentRoles] = useState([]);
+  // Fonction pour récuperer les postes correspondant à un sport
+  const getRoles = sportName => sportData.filter(sport => sport.name === sportName)[0].roles
+
+  const [currentRoles, setCurrentRoles] = useState(getRoles(playerData.sport));
   const handleSportChange = e => {
     handleChange(e);
-    let currentSport = e.target.value;
-    let roles = sportData.filter(sport => sport.name === currentSport)[0].roles;
+    let roles = getRoles(e.target.value);
     setCurrentRoles(roles);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    playerData.id = players.length;
-    addPlayer(playerData);
+
+    if (modifiedPlayer)
+      updatePlayer(playerData) // On modifie un joueur existant
+    else addPlayer(playerData); // On ajoute un nouveau joueur
+
     // onAddPlayer();
     e.target.reset();
+    returnFromPreviousSection();
   };
 
   return (
@@ -67,6 +78,7 @@ const AddPlayerForm = ({ onAddPlayer }) => {
             type="text"
             id="name"
             name="name"
+            value={playerData.name}
             onChange={handleChange}
             required
           />
@@ -76,6 +88,7 @@ const AddPlayerForm = ({ onAddPlayer }) => {
             type="number"
             id="age"
             name="age"
+            value={playerData.age}
             onChange={handleChange}
             min='16'
             max='99'
@@ -88,20 +101,24 @@ const AddPlayerForm = ({ onAddPlayer }) => {
                 type="radio" 
                 name="sex" 
                 id="male" 
-                onChange={() => setPlayerData({
+                data-value='Masculin'
+                onChange={e => setPlayerData({
                   ...playerData,
-                  sex: 'Masculin'
+                  sex: e.target.dataset.value
                 })}
+                checked={playerData.sex === 'Masculin'}
               /> Masculin
               
               <input 
                 type="radio" 
                 name="sex" 
                 id="female" 
-                onChange={() => setPlayerData({
+                data-value='Feminin'
+                onChange={e => setPlayerData({
                   ...playerData,
-                  sex: 'Feminin'
+                  sex: e.target.dataset.value
                 })}
+                checked={playerData.sex === 'Feminin'}
               /> Feminin
           </label>
 
@@ -115,8 +132,6 @@ const AddPlayerForm = ({ onAddPlayer }) => {
             required
           />
 
-          {/* <img src={pictureUrl} alt="" /> */}
-
           <label htmlFor="sport">Sport:</label>
           <select
             id="sport"
@@ -124,9 +139,9 @@ const AddPlayerForm = ({ onAddPlayer }) => {
             onChange={handleSportChange}
           >
           {
-              sportData.map(sport => (
-                  <option key={sport.name.toLowerCase()} value={sport.name}>{sport.name}</option>
-              ))
+            sportData.map(sport => (
+              <option key={sport.name.toLowerCase()} value={sport.name} selected={sport.name === playerData.sport}>{sport.name}</option>
+            ))
           }
           </select>
 
@@ -137,9 +152,9 @@ const AddPlayerForm = ({ onAddPlayer }) => {
             onChange={handleChange}
           >
           {
-              currentRoles.map(role => (
-                  <option key={role.toLowerCase()} value={role}>{role}</option>
-              ))
+            currentRoles.map(role => (
+              <option key={role.toLowerCase()} value={role} selected={role === playerData.role}>{role}</option>
+            ))
           }
           </select>
 
@@ -148,6 +163,7 @@ const AddPlayerForm = ({ onAddPlayer }) => {
             type="number"
             id="weight"
             name="weight"
+            value={playerData.weight}
             onChange={handleChange}
             required
           />
@@ -157,6 +173,7 @@ const AddPlayerForm = ({ onAddPlayer }) => {
             type="number"
             id="height"
             name="height"
+            value={playerData.height}
             onChange={handleChange}
             required
           />
@@ -166,6 +183,7 @@ const AddPlayerForm = ({ onAddPlayer }) => {
             type="number"
             id="speed"
             name="speed"
+            value={playerData.speed}
             onChange={handleChange}
             required
           />
@@ -175,6 +193,7 @@ const AddPlayerForm = ({ onAddPlayer }) => {
             type="number"
             id="strength"
             name="strength"
+            value={playerData.strength}
             onChange={handleChange}
             required
           />
@@ -184,6 +203,7 @@ const AddPlayerForm = ({ onAddPlayer }) => {
             type="number"
             id="endurance"
             name="endurance"
+            value={playerData.endurance}
             onChange={handleChange}
             required
           />

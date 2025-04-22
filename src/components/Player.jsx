@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
-import {} from 'react';
+import { usePlayers } from '../hooks/player-hooks';
 import '../styles/Player.css';
 
 const Player = ({ picture, ...data }) => {
+  const { setModifiedPlayer, removePlayer, goToNextSection } = usePlayers();
+
   return (
     <tr className="player">
       <td className='picture'>
@@ -14,8 +16,11 @@ const Player = ({ picture, ...data }) => {
         ))
       }
       <td className="actions">
-        <button className="">Modifier</button>
-        <button className="">Supprimer</button>
+        <button className="" onClick={() => {
+          setModifiedPlayer({ picture, ...data });
+          goToNextSection();
+        }}>Modifier</button>
+        <button className="" onClick={() => removePlayer(data.id)}>Supprimer</button>
       </td>
     </tr>
   )
