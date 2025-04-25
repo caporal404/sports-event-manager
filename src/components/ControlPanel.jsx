@@ -5,11 +5,6 @@ const ControlPanel = () => {
     const controlPanel = useRef();
     const togglePanel = () => controlPanel.current.classList.toggle('hide');
 
-    // window.onload = () => {
-    // if (window.innerWidth <= 700) 
-    //     controlPanel.current.classList.add('hide');
-    // }
-
     return (
         <section className="control-panel" ref={controlPanel}>
             <div className="hide-panel icon" onClick={togglePanel}>
