@@ -1,30 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from 'react';
+import useLocalStorage from './useLocalStorage';
 
 const PlayerContext = createContext();
 export const usePlayers = () => useContext(PlayerContext);
 
-const getSaved = () => {
-    const data = localStorage.getItem('players');
-    return data ? JSON.parse(data) : [];
-}
-
-
-
 const PlayerProvider = ({ children }) => {
-    const [players, setPlayers] = useState(getSaved());
+    const { savedData, save } = useLocalStorage('players', []);
+    
+    const [players, setPlayers] = useState(savedData);
     let [modifiedPlayer, setModifiedPlayer] = useState(null);
-
-    // Enregistrement des données dans le localStorage
-    useEffect(() => {
-        const savePlayers = () => {
-            localStorage.setItem('players', JSON.stringify(players));
-        };
-        savePlayers();
-        console.log('Players successfully saved!');
-    }, [players]);
+    
+    // Enregistrement automatique des joueurs en cas modification
+    useEffect(() => save(players), [players]);
+    
 
     const addPlayer = player => {
         player.id = players.length + 1;
