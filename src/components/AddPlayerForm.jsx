@@ -7,7 +7,7 @@ import '../styles/PlayerForm.css';
 
 // eslint-disable-next-line no-unused-vars
 const AddPlayerForm = ({ data, onAddPlayer }) => {
-  const { modifiedPlayer, updatePlayer, addPlayer, returnFromPreviousSection } = usePlayers();
+  const { setModifiedPlayer, modifiedPlayer, updatePlayer, addPlayer, returnFromPreviousSection } = usePlayers();
   
   const [playerData, setPlayerData] = useState(
     modifiedPlayer || 
@@ -61,8 +61,10 @@ const AddPlayerForm = ({ data, onAddPlayer }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (modifiedPlayer)
+    if (modifiedPlayer) {
       updatePlayer(playerData) // On modifie un joueur existant
+      setModifiedPlayer(null);
+    }
     else addPlayer(playerData); // On ajoute un nouveau joueur
 
     // onAddPlayer();
@@ -136,11 +138,12 @@ const AddPlayerForm = ({ data, onAddPlayer }) => {
           <select
             id="sport"
             name="sport"
+            value={playerData.sport}
             onChange={handleSportChange}
           >
           {
             sportData.map(sport => (
-              <option key={sport.name.toLowerCase()} value={sport.name} selected={sport.name === playerData.sport}>{sport.name}</option>
+              <option key={sport.name.toLowerCase()} value={sport.name}>{sport.name}</option>
             ))
           }
           </select>
@@ -149,11 +152,12 @@ const AddPlayerForm = ({ data, onAddPlayer }) => {
           <select
             id="role"
             name="role"
+            value={playerData.role}
             onChange={handleChange}
           >
           {
             currentRoles.map(role => (
-              <option key={role.toLowerCase()} value={role} selected={role === playerData.role}>{role}</option>
+              <option key={role.toLowerCase()} value={role}>{role}</option>
             ))
           }
           </select>

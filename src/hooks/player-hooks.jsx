@@ -18,7 +18,7 @@ const save = data => {
 
 const PlayerProvider = ({ children }) => {
     const [players, setPlayers] = useState(getSaved());
-    const [modifiedPlayer, setModifiedPlayer] = useState(null);
+    let [modifiedPlayer, setModifiedPlayer] = useState(null);
 
     const addPlayer = player => {
         player.id = players.length + 1;
@@ -32,7 +32,7 @@ const PlayerProvider = ({ children }) => {
     const updatePlayer = updateData => {
         const newPlayers = players.map(player => player.id === updateData.id ? { ...updateData } : player);
         setPlayers(newPlayers);
-        setModifiedPlayer(null);
+        // setModifiedPlayer(() => modifiedPlayer = null);
         console.log(modifiedPlayer);
         save(players);
     }
