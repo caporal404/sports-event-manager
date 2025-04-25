@@ -1,3 +1,4 @@
+import {} from 'recharts'
 import '../styles/App.css';
 import Left from './Left';
 import Right from './Right';
