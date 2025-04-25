@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const PlayerContext = createContext();
 export const usePlayers = () => useContext(PlayerContext);
@@ -11,14 +11,20 @@ const getSaved = () => {
     return data ? JSON.parse(data) : [];
 }
 
-const save = data => {
-    localStorage.setItem('players', JSON.stringify(data));
-    console.log('Players successfully  saved !');
-}
+
 
 const PlayerProvider = ({ children }) => {
     const [players, setPlayers] = useState(getSaved());
     let [modifiedPlayer, setModifiedPlayer] = useState(null);
+
+    // Enregistrement des données dans le localStorage
+    useEffect(() => {
+        const savePlayers = () => {
+            localStorage.setItem('players', JSON.stringify(players));
+        };
+        savePlayers();
+        console.log('Players successfully saved!');
+    }, [players]);
 
     const addPlayer = player => {
         player.id = players.length + 1;
@@ -26,7 +32,6 @@ const PlayerProvider = ({ children }) => {
             ...players,
             player
         ]);
-        save(players);
     }
 
     const updatePlayer = updateData => {
@@ -34,17 +39,14 @@ const PlayerProvider = ({ children }) => {
         setPlayers(newPlayers);
         // setModifiedPlayer(() => modifiedPlayer = null);
         console.log(modifiedPlayer);
-        save(players);
     }
 
     const removePlayer = id => {
         setPlayers(players.filter(player => player.id !== id));
-        save(players);
     }
 
     const clear = () => {
         setPlayers([]);
-        save(players);
     }
 
     const goToNextSection = () => {
