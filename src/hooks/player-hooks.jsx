@@ -29,8 +29,8 @@ const PlayerProvider = ({ children }) => {
     const updatePlayer = updateData => {
         const newPlayers = players.map(player => player.id === updateData.id ? { ...updateData } : player);
         setPlayers(newPlayers);
-        // setModifiedPlayer(() => modifiedPlayer = null);
-        console.log(modifiedPlayer);
+        setModifiedPlayer(null);
+        // console.log(modifiedPlayer);
     }
 
     const removePlayer = id => {

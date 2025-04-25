@@ -1,33 +1,38 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import sportData from '../data/sport-data.json';
 import { usePlayers } from '../hooks/player-hooks';
 import SubSection from './SubSection';
 import '../styles/PlayerForm.css';
 
+const emptyPlayer = {
+  id: '',
+  name: '',
+  age: '',
+  sex: '',
+  picture: '',
+  sport: sportData[0].name, // Sport par défaut - Basketball
+  role: sportData[0].roles[0],  // Poste par défaut - Meneur
+  weight: '',
+  height: '',
+  speed: '',
+  strength: '',
+  endurance: ''
+}
+
 // eslint-disable-next-line no-unused-vars
 const AddPlayerForm = ({ data, onAddPlayer }) => {
   const { setModifiedPlayer, modifiedPlayer, updatePlayer, addPlayer, returnFromPreviousSection } = usePlayers();
   
-  const [playerData, setPlayerData] = useState(
-    modifiedPlayer || 
-    {
-      id: '',
-      name: '',
-      age: '',
-      sex: '',
-      picture: '',
-      sport: sportData[0].name, // Sport par défaut - Basketball
-      role: sportData[0].roles[0],  // Poste par défaut - Meneur
-      weight: '',
-      height: '',
-      speed: '',
-      strength: '',
-      endurance: ''
-  });
+  const [playerData, setPlayerData] = useState(emptyPlayer);
 
-  // console.log(playerData);
+  // Utilise les données du joueur que l'on souhaite modifier pour remplir le formulaire
+  useEffect(() => {
+    setPlayerData(modifiedPlayer || emptyPlayer)
+  }, [modifiedPlayer])
 
+   
+  /*  Fonctions de validation du formulaire  */
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -67,14 +72,18 @@ const AddPlayerForm = ({ data, onAddPlayer }) => {
     }
     else addPlayer(playerData); // On ajoute un nouveau joueur
 
-    // onAddPlayer();
-    e.target.reset();
     returnFromPreviousSection();
   };
 
+  const handleReset = () => {
+    setModifiedPlayer(null)
+  }
+
+  
+
   return (
     <SubSection className='player-form'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onReset={handleReset} name='playerForm'>
           <label htmlFor="name">Nom:</label>
           <input
             type="text"
