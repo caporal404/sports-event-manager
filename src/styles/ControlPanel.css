@@ -13,36 +13,34 @@
 .control-panel nav {
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 15px;
+    padding: 0 20px;
     background-color: #333;
 }    
 
-.control-panel li {
-    list-style-type: none;
-    margin: 15px 0;
-    padding: 10px 20px;
+.control-panel a {
+    width: 100%;
+    padding: 10px 0;
     text-align: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2em;
     border-radius: 5px;
     transition: 300ms;
 }
 
-.control-panel li:hover {
+.control-panel a:hover {
     background-color: #666;
-    a { color: #242ccc; }
-}
-
-.control-panel a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.2em;
-    transition: 300ms;
+    color: #242ccc;
 }
 
 .control-panel .icon {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 25px;
     color: #ccc;
     cursor: pointer;
     transition: 200ms;

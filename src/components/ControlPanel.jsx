@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import '../styles/ControlPanel.css';
+import { Link } from 'react-router-dom';
 
 const ControlPanel = () => {
     const controlPanel = useRef();
@@ -14,20 +15,10 @@ const ControlPanel = () => {
                 <i className="fas fa-bars"></i>
             </div>
             <nav>
-                <ul>
-                    <li className="home">
-                        <a href="#">Accueil</a>
-                    </li>
-                    <li className="event-details">
-                        <a href="#">Évènements</a>
-                    </li>
-                    <li className="team-details">
-                        <a href="#">Équipes</a>
-                    </li>
-                    <li className="player-details">
-                        <a href="#">Joueurs</a>
-                    </li>
-                </ul>
+                <Link to='/'>Accueil</Link>
+                <Link to='/events'>Évènements</Link>
+                <Link to='/teams'>Équipes</Link>
+                <Link to='/players'>Joueurs</Link>
             </nav>
         </section>
     );
