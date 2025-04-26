@@ -1,44 +1,24 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import {} from 'recharts'
 import '../styles/App.css';
-import Left from './Left';
-import Right from './Right';
-import Header from './Header';
-import ControlPanel from './ControlPanel';
-import ViewProvider from '../hooks/view-hooks';
-import PlayerProvider from '../hooks/player-hooks';
 import PlayerSection from './PlayerSection';
+import Layout from './Layout';
+import PlayerProvider from '../hooks/player-hooks';
 
-const router = createBrowserRouter([
-  // {
-  //   path: '/',
-  //   element: <App />
-  // },
-  {
-    path: '/players',
-    element: <PlayerSection />
-  }
-]);
 
 const App = () => {
   return (
-    <RouterProvider router={router}>
-      <div className='App'>
-          <Left>
-            <ViewProvider>
-              <ControlPanel />
-            </ViewProvider>
-          </Left>
-          <Right>
-            <Header />
-            <ViewProvider>
-              <PlayerProvider>
-                <PlayerSection />
-              </PlayerProvider>
-            </ViewProvider>
-          </Right>
-      </div>
-    </RouterProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={
+            <PlayerProvider>
+              <PlayerSection />
+            </PlayerProvider>
+          }></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 

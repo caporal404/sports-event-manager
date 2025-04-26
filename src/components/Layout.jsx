@@ -4,17 +4,22 @@ import Right from './Right';
 import Header from './Header';
 import ControlPanel from './ControlPanel';
 
+const style = {
+    height: '100vh',
+    display: 'flex'
+}
+
 const Layout = () => {
   return (
-    <>
-    <Left>
-        <ControlPanel />
-    </Left>
-    <Right>
-        <Header />
-        <Outlet />
-    </Right>
-    </>
+    <div className='dashboard-layout' style={style}>
+        <Left>
+            <ControlPanel />
+        </Left>
+        <Right>
+            <Header />
+            <Outlet />
+        </Right>
+    </div>
   )
 }
 
