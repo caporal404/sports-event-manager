@@ -57,7 +57,7 @@
 
 .control-panel.hide {
     width: 0;
-    ul { display: none; }
+    nav { display: none; }
 }
 
 .control-panel.hide .show-panel {

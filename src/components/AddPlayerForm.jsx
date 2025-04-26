@@ -201,7 +201,7 @@ const AddPlayerForm = ({ data, onAddPlayer }) => {
             required
           />
 
-          <label htmlFor="strength">Force (kg):</label>
+          <label htmlFor="strength">Force (N):</label>
           <input
             type="number"
             id="strength"
