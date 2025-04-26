@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import {} from 'recharts'
 import '../styles/App.css';
-import PlayerSection from './PlayerSection';
 import Layout from './Layout';
 import PlayerProvider from '../hooks/player-hooks';
+import PlayerSection from './PlayerSection';
 
 
 const App = () => {

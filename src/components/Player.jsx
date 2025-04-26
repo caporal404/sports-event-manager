@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import {} from 'recharts'
 import { usePlayers } from '../hooks/player-hooks';
 import '../styles/Player.css';
 

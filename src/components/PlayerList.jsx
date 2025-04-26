@@ -1,4 +1,3 @@
-import {} from 'react';
 import { usePlayers } from '../hooks/player-hooks';
 import SubSection from './SubSection';
 import Player from './Player';
