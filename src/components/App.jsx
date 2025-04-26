@@ -1,3 +1,4 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import {} from 'recharts'
 import '../styles/App.css';
 import Left from './Left';
@@ -8,23 +9,36 @@ import ViewProvider from '../hooks/view-hooks';
 import PlayerProvider from '../hooks/player-hooks';
 import PlayerSection from './PlayerSection';
 
+const router = createBrowserRouter([
+  // {
+  //   path: '/',
+  //   element: <App />
+  // },
+  {
+    path: '/players',
+    element: <PlayerSection />
+  }
+]);
+
 const App = () => {
   return (
-    <div className='App'>
-        <Left>
-          <ViewProvider>
-            <ControlPanel />
-          </ViewProvider>
-        </Left>
-        <Right>
-          <Header />
-          <ViewProvider>
-            <PlayerProvider>
-              <PlayerSection />
-            </PlayerProvider>
-          </ViewProvider>
-        </Right>
-    </div>
+    <RouterProvider router={router}>
+      <div className='App'>
+          <Left>
+            <ViewProvider>
+              <ControlPanel />
+            </ViewProvider>
+          </Left>
+          <Right>
+            <Header />
+            <ViewProvider>
+              <PlayerProvider>
+                <PlayerSection />
+              </PlayerProvider>
+            </ViewProvider>
+          </Right>
+      </div>
+    </RouterProvider>
   );
 };
 
