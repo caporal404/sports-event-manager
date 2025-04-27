@@ -1,9 +1,9 @@
-import { usePlayers } from '../hooks/player-hooks';
+import { useData } from '../hooks/data-hooks';
 import SubSection from './SubSection';
 import Player from './Player';
 
 const PlayerList = () => {
-    const { players } = usePlayers();
+    const { data : players } = useData();
 
     return (
         <SubSection className="current player-list">

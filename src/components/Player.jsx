@@ -1,10 +1,14 @@
 /* eslint-disable react/prop-types */
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, Tooltip } from 'recharts'
-import { usePlayers } from '../hooks/player-hooks';
+import { useData } from '../hooks/data-hooks';
 import '../styles/Player.css';
 
 const Player = ({ id, picture, weight, height, speed, strength, endurance, ...data }) => {
-  const { setModifiedPlayer, removePlayer, goToNextSection } = usePlayers();
+  const { 
+    setModified : setModifiedPlayer, 
+    remove : removePlayer, 
+    goToNextSection 
+  } = useData();
 
   const MAX_VALUES = {
     weight: 100, 

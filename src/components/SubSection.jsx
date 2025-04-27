@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import '../styles/sub-section.css';
-import { usePlayers } from '../hooks/player-hooks';
+import { useData } from '../hooks/data-hooks';
 
 
 const SubSection = ({ children, className,  ...props}) => {
-  const { goToNextSection, returnFromPreviousSection } = usePlayers();
+  const { goToNextSection, returnFromPreviousSection } = useData();
   
   return (
     <section className={`sub-section ${className}`} {...props}>

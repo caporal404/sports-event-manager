@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 import sportData from '../data/sport-data.json';
-import { usePlayers } from '../hooks/player-hooks';
+import { useData } from '../hooks/data-hooks';
 import SubSection from './SubSection';
 import '../styles/PlayerForm.css';
 
@@ -22,7 +22,13 @@ const emptyPlayer = {
 
 // eslint-disable-next-line no-unused-vars
 const AddPlayerForm = ({ data, onAddPlayer }) => {
-  const { setModifiedPlayer, modifiedPlayer, updatePlayer, addPlayer, returnFromPreviousSection } = usePlayers();
+  const { 
+    setModified : setModifiedPlayer, 
+    modified : modifiedPlayer, 
+    update : updatePlayer, 
+    add : addPlayer, 
+    returnFromPreviousSection 
+  } = useData();
   
   const [playerData, setPlayerData] = useState(emptyPlayer);
 
