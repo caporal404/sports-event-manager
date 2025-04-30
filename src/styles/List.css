@@ -1,0 +1,35 @@
+
+/* List */
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Fin List */
+
+
+/* Item */ 
+
+.list-item {
+    display: flex;
+    gap: 5px;
+}
+
+.list-item img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.list-item .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-item .text {
+    color: #555;
+}
+
+/* Fin Item */
