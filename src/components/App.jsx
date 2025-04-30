@@ -11,7 +11,11 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />} >
-          <Route index element={<TeamSection />}></Route>
+          <Route index element={
+            <DataProvider name='teams'>
+              <TeamSection />
+            </DataProvider>
+          }></Route>
           <Route path='players' element={
             <DataProvider name='players'>
               <PlayerSection />

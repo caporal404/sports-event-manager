@@ -59,6 +59,7 @@ const Player = ({ id, picture, weight, height, speed, strength, endurance, ...da
       </td>
       <td className="actions">
         <button className="" onClick={() => {
+          setModifiedPlayer(null);
           setModifiedPlayer({ id, picture, weight, height, speed, strength, endurance, ...data });
           goToNextSection();
         }}>Modifier</button>
