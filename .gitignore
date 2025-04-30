@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Librairies externes
-public/assets/
+public/

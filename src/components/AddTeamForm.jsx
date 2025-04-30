@@ -1,10 +1,14 @@
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from 'react';
 import { v4 } from 'uuid';
-import { useState } from 'react';
+import '../styles/TeamForm.css';
 import sportData from '../data/sport-data.json';
-import SubSection from './SubSection';
-import { useData } from '../hooks/data-hooks';
-import { useEffect } from 'react';
+import playerData from '../data/player-data.json';
 import useLocalStorage from '../hooks/useLocalStorage';
+import { useData } from '../hooks/data-hooks';
+import SubSection from './SubSection';
+import ThumbList from './Thumbnail';
+import List from './List';
 
 const emptyTeam = {
   id: '',
@@ -37,18 +41,19 @@ const AddTeamForm = () => {
 
   // On recupere la liste des joueurs du LocalStorage
   useEffect(() => {
-    setPlayers(getSaved());
+    // setPlayers(getSaved());
+    setPlayers(playerData);
   }, []);
 
-  const addPlayerToTeam = (player, index) => {
+  const addPlayerToTeam = player => {
     // On ajoute les joueur à l'équipe
     setTeamPlayers([...teamPlayers, player]);
     // On supprime le joueur de la liste
-    setPlayers(players.filter((_, i) => i !== index));
+    setPlayers(players.filter(({ id }) => id !== player.id));
   }
 
-  const removePlayerToTeam = (player, index) => {
-    setTeamPlayers(teamPlayers.filter((_, i) => i !== index));
+  const removePlayerToTeam = player => {
+    setTeamPlayers(teamPlayers.filter(({ id }) => id !== player.id));
     setPlayers([...players, player]);
   }
 
@@ -112,37 +117,21 @@ const AddTeamForm = () => {
         <div className="mb-3">
           <label htmlFor="">Joueurs: </label>
 
-          <div className="team-players">
-            {
-              teamPlayers.map((player, index) => (
-                <div key={`player-thumb-${index + 1}`} className="player-thumb" title={`${player.name} - ${player.role}`}>
-                  <img src={player.picture} alt={`Joueur thumbnail ${index + 1}`}/>
-                  <div className="remove" onClick={() => removePlayerToTeam(player, index)}>
-                    <i className="fas fa-times"></i>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
+          <ThumbList
+            id='team-players' 
+            data={teamPlayers} 
+            onRemoveItem={removePlayerToTeam} 
+          />
 
-          <div className="players-list">
-            {
-              players.map((player, index) => 
-                player.sport === teamData.sport &&
-                (
-                  <div key={`player-${player.id}`} className="player" onClick={() => addPlayerToTeam(player, index)}>
-                    <img src={player.picture} alt={`Joueur ${index + 1}`} className='player-img'/>
-                    <div className="player-info">
-                      <span className='name'>{player.name}</span>
-                      <span className='role'>{player.role }</span>
-                    </div>
-                  </div>
-                )
-              )
-            }
-          </div>
+          <List
+            id='player-list' 
+            data={players.filter(({ sport }) => sport !== teamData.sport)} 
+            onSelectItem={addPlayerToTeam} 
+          />
 
-          <button className='btn btn-primary'><i className="fas fa-plus"></i></button>
+          <button className='btn btn-primary'>
+            <i className="fas fa-plus" />
+          </button>
         </div>
 
         <div className="mb-3">

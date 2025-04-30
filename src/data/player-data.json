@@ -1,16 +1,44 @@
 [
-    {
-      "id": "0",
-      "name": "Kevin",
-      "age": "19",
-      "sex": "Masculin",
-      "picture": "blob:http://localhost:5173/83aaf30d-dcf8-4daf-9857-37633d99e55b",
-      "sport": "Basketball",
-      "role": "Meneur",
-      "weight": "58",
-      "height": "170",
-      "speed": "5",
-      "strength": "30",
-      "endurance": "300"
-    }
+  {
+    "id": "0",
+    "name": "Kevin",
+    "age": "19",
+    "sex": "Masculin",
+    "picture": "/img/1.jpg",
+    "sport": "Basketball",
+    "role": "Meneur",
+    "weight": "58",
+    "height": "170",
+    "speed": "5",
+    "strength": "30",
+    "endurance": "300"
+  },
+  {
+    "id": "1",
+    "name": "Tamo",
+    "age": "21",
+    "sex": "Masculin",
+    "picture": "/img/2.jpg",
+    "sport": "Basketball",
+    "role": "Arrière",
+    "weight": "65",
+    "height": "172",
+    "speed": "3",
+    "strength": "20",
+    "endurance": "500"
+  },
+  {
+    "id": "2",
+    "name": "Borel",
+    "age": "23",
+    "sex": "Masculin",
+    "picture": "/img/3.jpg",
+    "sport": "Football",
+    "role": "Milieu",
+    "weight": "75",
+    "height": "176",
+    "speed": "7",
+    "strength": "40",
+    "endurance": "550"
+  }   
 ]
