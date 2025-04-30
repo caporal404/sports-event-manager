@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import '../styles/List.css'
 
-const List = ({ id, data, onSelectItem = f => f }) => {
+const List = ({ data, onSelectItem = f => f, ...props }) => {
   return (
-    <div className="list" id={id}>
+    <div className="list" {...props} >
       {
         data.map(item => (
             <Item

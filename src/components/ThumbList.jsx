@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import '../styles/ThumbList.css';
 
-const ThumbList = ({ id, data, onRemoveItem = f => f }) => {
+const ThumbList = ({ data, onRemoveItem = f => f, ...props }) => {
   return (
-    <div className="thumb-list" id={id}>
+    <div className="thumb-list" {...props}>
       {
         data.map((item, index) => (
           <Thumb

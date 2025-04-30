@@ -2,7 +2,12 @@
     width: min(90%, 450px); 
 }
 
+.team-players {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-
-
-
+.player-list-container {
+    position: relative;
+}

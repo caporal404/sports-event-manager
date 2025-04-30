@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { v4 } from 'uuid';
 import '../styles/TeamForm.css';
 import sportData from '../data/sport-data.json';
@@ -7,7 +7,7 @@ import playerData from '../data/player-data.json';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useData } from '../hooks/data-hooks';
 import SubSection from './SubSection';
-import ThumbList from './Thumbnail';
+import ThumbList from './ThumbList';
 import List from './List';
 
 const emptyTeam = {
@@ -22,10 +22,12 @@ const emptyTeam = {
 };
 
 const AddTeamForm = () => {
-  const { getSaved } = useLocalStorage('players');
+  // const { savedData } = useLocalStorage('players');
   const [teamData, setTeamData] = useState(emptyTeam);
   const [players, setPlayers] = useState([]);
   const [teamPlayers, setTeamPlayers] = useState([]);
+  // Pour afficher et cacher la liste simplfiée des joueurs
+  const [showList, setShowList] = useState(false);
 
   const { 
     modified: modifiedTeam, 
@@ -41,9 +43,14 @@ const AddTeamForm = () => {
 
   // On recupere la liste des joueurs du LocalStorage
   useEffect(() => {
-    // setPlayers(getSaved());
+    // setPlayers(savedData);
     setPlayers(playerData);
   }, []);
+
+  // Si le sport change on reinitialise la liste des joueurs
+  useEffect(() => {
+    setTeamPlayers([]);
+  }, [teamData.sport])
 
   const addPlayerToTeam = player => {
     // On ajoute les joueur à l'équipe
@@ -56,6 +63,7 @@ const AddTeamForm = () => {
     setTeamPlayers(teamPlayers.filter(({ id }) => id !== player.id));
     setPlayers([...players, player]);
   }
+  
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -87,7 +95,7 @@ const AddTeamForm = () => {
       <form onSubmit={handleSubmit} onReset={handleReset} className="needs-validation">
         <div className="mb-3">
           <label htmlFor="team-name" className="form-label">Nom:</label>
-          <input 
+          <input
             type="text" 
             name="name" 
             id="team-name"
@@ -114,24 +122,36 @@ const AddTeamForm = () => {
           </select>
         </div>
 
-        <div className="mb-3">
+        <div className="team-players mb-3">
           <label htmlFor="">Joueurs: </label>
 
           <ThumbList
-            id='team-players' 
+            id='thumb-players' 
             data={teamPlayers} 
             onRemoveItem={removePlayerToTeam} 
           />
 
-          <List
-            id='player-list' 
-            data={players.filter(({ sport }) => sport !== teamData.sport)} 
-            onSelectItem={addPlayerToTeam} 
-          />
+          <div className="player-list-container">
+            {
+              showList && 
+              <List
+                id='player-list' 
+                data={players.filter(({ sport }) => sport === teamData.sport)} 
+                onSelectItem={player => {
+                  addPlayerToTeam(player);
+                  setShowList(false)
+                }} 
+              />
+            }
 
-          <button className='btn btn-primary'>
-            <i className="fas fa-plus" />
-          </button>
+            <button className='show-player-list btn btn-primary' onClick={e => {
+              e.preventDefault();
+              setShowList(!showList);
+            }}>
+              <i className="fas fa-plus" />
+            </button>
+          </div>
+         
         </div>
 
         <div className="mb-3">
