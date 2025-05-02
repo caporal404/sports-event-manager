@@ -10,8 +10,8 @@ const PlayerList = () => {
             <table>
                 <tbody>
                 {
-                    players.map((player, index) => (
-                        <Player key={`player-${index}`} {...player} />
+                    players.map(player => (
+                        <Player key={`player-${player.id}`} {...player} />
                     ))
                 }
                 </tbody>

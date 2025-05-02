@@ -3,7 +3,7 @@ import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, Tooltip 
 import { useData } from '../hooks/data-hooks';
 import '../styles/Player.css';
 
-const Player = ({ id, picture, weight, height, speed, strength, endurance, ...data }) => {
+const Player = ({ picture, weight, height, speed, strength, endurance, ...player }) => {
   const { 
     setModified : setModifiedPlayer, 
     remove : removePlayer, 
@@ -29,14 +29,14 @@ const Player = ({ id, picture, weight, height, speed, strength, endurance, ...da
 
   return (
     <tr className="player">
-      <td className='id'>{id}</td>
       <td className='picture'>
         <img src={picture} alt="Photo du joueur" />
       </td>
       {
-        Object.entries(data).map(([param, value]) => (
-          <td key={param} className={param}>{value}</td>
-        ))
+        Object.entries(player).map(([key, value]) => 
+          (key !== 'key' && key !== 'id') &&  // On n'affiche pas la valeur des attributs key et id pris en props 
+          <td key={key} className={key}>{value}</td>
+        )
       }
       <td className="stats">
         <RadarChart
@@ -60,10 +60,10 @@ const Player = ({ id, picture, weight, height, speed, strength, endurance, ...da
       <td className="actions">
         <button className="" onClick={() => {
           setModifiedPlayer(null);
-          setModifiedPlayer({ id, picture, weight, height, speed, strength, endurance, ...data });
+          setModifiedPlayer({ picture, weight, height, speed, strength, endurance, ...player });
           goToNextSection();
         }}>Modifier</button>
-        <button className="" onClick={() => removePlayer(data.id)}>Supprimer</button>
+        <button className="" onClick={() => removePlayer(player.id)}>Supprimer</button>
       </td>
     </tr>
   )

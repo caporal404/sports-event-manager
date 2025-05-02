@@ -43,8 +43,8 @@ const AddTeamForm = () => {
 
   // On recupere la liste des joueurs du LocalStorage
   useEffect(() => {
-    // setPlayers({...savedData});
-    setPlayers(playerData);
+    // setPlayers(JSON.parse(JSON.stringify(savedData))); // On copie l'objet en profondeur
+    setPlayers(JSON.parse(JSON.stringify(playerData))); // On copie l'objet en profondeur
   }, []);
 
   // Si le sport change on reinitialise la liste des joueurs
@@ -86,18 +86,21 @@ const AddTeamForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
     if (modifiedTeam) {
       updateTeam(teamData);
-    } else {
+    } 
+    else {
       teamData.players = teamPlayers;
       addTeam(teamData);
+      e.target.reset();
     }
-    returnFromPreviousSection();
+
+    // returnFromPreviousSection();
   };
 
   const handleReset = () => {
     setModifiedTeam(null);
-    setTeamData(emptyTeam);
   };
 
   return (
@@ -133,7 +136,7 @@ const AddTeamForm = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="picture">Photo: </label>
+          <label htmlFor="picture" className="form-label">Photo: </label>
           <input 
             type="file" 
             accept="image/*"
@@ -145,7 +148,7 @@ const AddTeamForm = () => {
         </div>
 
         <div className="team-players mb-3">
-          <label htmlFor="">Joueurs: </label>
+          <label className="form-label">Joueurs: </label>
 
           <ThumbList
             id='thumb-players' 
