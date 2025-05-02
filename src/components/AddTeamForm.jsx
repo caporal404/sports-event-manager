@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect, useRef } from 'react';
-import { v4 } from 'uuid';
 import '../styles/TeamForm.css';
 import sportData from '../data/sport-data.json';
 import playerData from '../data/player-data.json';
@@ -14,6 +13,7 @@ const emptyTeam = {
   id: '',
   name: '',
   sport: sportData[0].name, // Sport par défaut - Basketball
+  picture: '',
   players: [],
   city: '',
   coach: '',
@@ -43,7 +43,7 @@ const AddTeamForm = () => {
 
   // On recupere la liste des joueurs du LocalStorage
   useEffect(() => {
-    // setPlayers(savedData);
+    // setPlayers({...savedData});
     setPlayers(playerData);
   }, []);
 
@@ -73,12 +73,22 @@ const AddTeamForm = () => {
     });
   };
 
+  const handlePictureChange = e => {
+    const file = e.target.files[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setTeamData({
+        ...teamData,
+        picture: url
+      })
+    }
+  }
+
   const handleSubmit = e => {
     e.preventDefault();
     if (modifiedTeam) {
       updateTeam(teamData);
     } else {
-      teamData.id = v4();
       teamData.players = teamPlayers;
       addTeam(teamData);
     }
@@ -120,6 +130,18 @@ const AddTeamForm = () => {
               <option key={sport.name.toLowerCase()} value={sport.name}>{sport.name}</option>
             ))}
           </select>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="picture">Photo: </label>
+          <input 
+            type="file" 
+            accept="image/*"
+            name="picture" 
+            id="picture" 
+            onChange={handlePictureChange}
+            required
+          />
         </div>
 
         <div className="team-players mb-3">

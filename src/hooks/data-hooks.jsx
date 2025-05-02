@@ -3,6 +3,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from 'react';
+import { v4 } from 'uuid';
 import useLocalStorage from './useLocalStorage';
 
 const DataContext = createContext();
@@ -19,7 +20,7 @@ const DataProvider = ({ children, name, initialValue = [] }) => {
   
 
   const add = obj => {
-      obj.id = data.length + 1;
+      obj.id = v4();
       setData([
           ...data,
           obj
