@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Match",
+    "participants": {
+      "type": "teams",
+      "number": "2"
+    } 
+  },
+  {
+    "name": "Tournoi",
+    "participants": {
+      "type": "teams",
+      "number": "4+"
+    } 
+  },
+  {
+    "name": "Compétition",
+    "participants": {
+      "type": "players",
+      "number": "4+"
+    } 
+  },
+  {
+    "name": "Camp d'entraînement",
+    "participants": {
+      "type": "teams",
+      "number": "1+"
+    } 
+  }
+]

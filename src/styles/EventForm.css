@@ -1,0 +1,13 @@
+.event-form form {
+  width: min(90%, 450px); 
+}
+
+.event-participants {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.participant-list-container {
+  position: relative;
+}
