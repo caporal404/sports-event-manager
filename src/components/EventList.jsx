@@ -1,24 +1,38 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+import { useState } from 'react';
 import '../styles/EventList.css';
 import { useData } from '../hooks/data-hooks'
 import SubSection from './SubSection';
+import Details from './Details';
 
 const EventList = () => {
-    const { data: events } = useData();
+    const { data: events, showDetails, toggleDetails } = useData();
+    const [currentEvent, setCurrentEvent] = useState(null);
 
     if(!events || !events.length) 
         return <div className="no-events">Aucun évènement disponible</div>
 
     return (
-        <SubSection className='current event-list'>
-          {events.map(event => (
-            <Event key={`event-${event.id}`} {...event} />
-          ))}             
-        </SubSection>
+        <>
+            <SubSection className='current event-list'>
+            {events.map(event => (
+                <Event 
+                    key={`event-${event.id}`}
+                    onClick={() => {
+                        setCurrentEvent(event);
+                        toggleDetails();
+                    }}
+                    {...event}
+                />
+            ))}             
+            </SubSection>
+            {showDetails && <Details data={currentEvent} onHide={toggleDetails}/>}
+        </>
     )
 }
 
-const Event = ({ ...event }) => {
+const Event = ({ onClick, ...event }) => {
     const {
         setModified : setModifiedEvent,
         remove : removeEvent,
@@ -26,7 +40,7 @@ const Event = ({ ...event }) => {
     } = useData();
 
     return (
-        <div className="event">
+        <div className="event" onClick={onClick}>
             <div className="d-flex justify-content-between align-items-center">
                 <h3 className="name w-100" title={event.name}>{event.name}</h3>
                 <span className="type">{event.type}</span>
@@ -46,14 +60,6 @@ const Event = ({ ...event }) => {
                     <span>{event.time}</span>
                 </p>
             </div>
-            {/* <div className="actions">
-                <button className="btn btn-primary" onClick={() => {
-                    setModifiedEvent(null);
-                    setModifiedEvent(event);
-                    // goToNextSection();
-                }}>Modifier</button>
-                <button className="btn btn-secondary" onClick={() => removeEvent(event.id)}>Supprimer</button>
-            </div> */}
         </div>
     )
 }

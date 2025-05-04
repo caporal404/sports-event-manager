@@ -3,6 +3,7 @@ import Section from './Section'
 import AddEventForm from './AddEventForm';
 import EventList from './EventList';
 
+
 const EventSection = () => {
   return (
     <DataProvider name='events'>

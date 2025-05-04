@@ -13,7 +13,8 @@ const DataProvider = ({ children, name, initialValue = [] }) => {
   const { getSaved, save } = useLocalStorage(name, initialValue);
   
   const [data, setData] = useState(getSaved());
-  let [modified, setModified] = useState(null);
+  const [modified, setModified] = useState(null);
+  const [showDetails, setShowDetails] = useState(false)
   
   // Enregistrement automatique des données en cas modification
   useEffect(() => save(data), [data]);
@@ -41,6 +42,8 @@ const DataProvider = ({ children, name, initialValue = [] }) => {
       setData(initialValue);
   }
 
+  const toggleDetails = () => setShowDetails(!showDetails);
+
   const goToNextSection = () => {
       document.querySelector('.current + .sub-section').classList.add('current');
       document.querySelector('.current').classList.remove('current');
@@ -61,6 +64,8 @@ const DataProvider = ({ children, name, initialValue = [] }) => {
               modified,
               setModified,
               update,
+              showDetails,
+              toggleDetails,
               goToNextSection,
               returnFromPreviousSection
       }}>
