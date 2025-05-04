@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import '../styles/App.css';
 import Layout from './Layout';
+import EventSection from './EventSection';
 import TeamSection from './TeamSection';
 import PlayerSection from './PlayerSection';
 
@@ -10,7 +11,8 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />} >
-          <Route index element={<TeamSection />}></Route>
+          <Route index element={<EventSection/>}></Route>
+          <Route path='teams' element={<TeamSection />}></Route>
           <Route path='players' element={<PlayerSection />}></Route>
         </Route>
       </Routes>
