@@ -10,9 +10,9 @@ const DataContext = createContext();
 export const useData = () => useContext(DataContext);
 
 const DataProvider = ({ children, name, initialValue = [] }) => {
-  const { savedData, save } = useLocalStorage(name, initialValue);
+  const { getSaved, save } = useLocalStorage(name, initialValue);
   
-  const [data, setData] = useState(savedData);
+  const [data, setData] = useState(getSaved());
   let [modified, setModified] = useState(null);
   
   // Enregistrement automatique des données en cas modification

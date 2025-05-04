@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import '../styles/App.css';
 import Layout from './Layout';
-import DataProvider from '../hooks/data-hooks';
-import PlayerSection from './PlayerSection';
 import TeamSection from './TeamSection';
+import PlayerSection from './PlayerSection';
 
 
 const App = () => {
@@ -11,16 +10,8 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />} >
-          <Route index element={
-            <DataProvider name='teams'>
-              <TeamSection />
-            </DataProvider>
-          }></Route>
-          <Route path='players' element={
-            <DataProvider name='players'>
-              <PlayerSection />
-            </DataProvider>
-          }></Route>
+          <Route index element={<TeamSection />}></Route>
+          <Route path='players' element={<PlayerSection />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
