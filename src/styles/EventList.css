@@ -1,0 +1,50 @@
+
+
+
+/* Event List */
+
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px 40px;
+}
+
+/* Fin Event List */
+
+/* Event */
+
+.event {
+  position: inherit;
+  padding: 20px 35px;
+  background-color: #f0f0f0;
+  width: min(100%, 600px);
+  border-radius: 5px;
+  box-shadow: 0 0 3px var(--main-color);
+  cursor: pointer;
+}
+
+.event svg {
+  margin-right: 5px;
+  color: var(--main-color);
+}
+
+.event .type {
+  padding: 0 15px;
+  color: var(--main-color);
+  background-color: transparent;
+  border: 1.7px solid var(--main-color);
+  border-radius: 10px;
+  font-size: .8em;
+  font-weight: 500;
+}
+
+.event .name,
+.event .description {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* Fin Event */

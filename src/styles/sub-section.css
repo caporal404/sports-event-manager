@@ -46,6 +46,8 @@
  @container section (max-width: 900px) {
     .sub-section:not(.current) {
         width: 0;
+        margin: 0;
+        padding: 0;
     }
  }
 
