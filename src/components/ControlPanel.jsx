@@ -15,10 +15,10 @@ const ControlPanel = () => {
                 <i className="fas fa-bars"></i>
             </div>
             <nav>
-                <Link to='/'>Accueil</Link>
-                <Link to='/events'>Évènements</Link>
-                <Link to='/teams'>Équipes</Link>
-                <Link to='/players'>Joueurs</Link>
+                <Link to='/home'><i className="fas fa-house" />Accueil</Link>
+                <Link to='/dashboard/events'><i className="fas fa-calendar-days" />Évènements</Link>
+                <Link to='/dashboard/teams'><i className="fas fa-people-group" />Équipes</Link>
+                <Link to='/dashboard/players'><i className="fas fa-person" />Joueurs</Link>
             </nav>
         </section>
     );

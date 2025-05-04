@@ -9,9 +9,9 @@ const style = {
     display: 'flex'
 }
 
-const Layout = () => {
+const Dashboard = () => {
   return (
-    <div className='dashboard-layout' style={style}>
+    <div className='dashboard' style={style}>
         <Left>
             <ControlPanel />
         </Left>
@@ -23,4 +23,4 @@ const Layout = () => {
   )
 }
 
-export default Layout;
+export default Dashboard;

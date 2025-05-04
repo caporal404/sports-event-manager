@@ -23,8 +23,7 @@
 
 .control-panel a {
     width: 100%;
-    padding: 10px 0;
-    text-align: center;
+    padding: 10px 0 10px 10px;
     text-decoration: none;
     color: #fff;
     font-size: 1.2em;
@@ -35,6 +34,10 @@
 .control-panel a:hover {
     background-color: #666;
     color: #242ccc;
+}
+
+.control-panel a svg {
+    margin-right: 10px;
 }
 
 .control-panel .icon {
