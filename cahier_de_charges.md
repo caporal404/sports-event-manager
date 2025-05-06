@@ -43,7 +43,7 @@ L'application a pour but de permettre à des organisateurs sportifs (**clubs, as
 
 Création d’un événement (nom, type, date, lieu, participantes - joueurs ou équipes -)
 
-Types d’événements supportés : match, tournoi, compétion, camp d'entrainement.
+Types d’événements supportés : **match, tournoi, compétion, camp d'entrainement**.
 
 Visualisation des détails d’un événement
 

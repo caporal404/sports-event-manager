@@ -227,9 +227,9 @@ const AddPlayerForm = ({ data, onAddPlayer }) => {
             required
           />
 
-          <div className="controls">
-              <button type="submit">Enregistrer</button>
-              <button type="reset">Effacer</button>
+          <div className="controls d-flex justify-content-between">
+              <button type="submit" className='btn btn-primary'>Enregistrer</button>
+              <button type="reset" className='btn btn-secondary'>Effacer</button>
           </div>
       </form>
     </SubSection>

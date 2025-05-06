@@ -8,13 +8,22 @@ import ThumbList from './ThumbList';
 const TeamList = () => {
     const { data: teams } = useData();
 
-    if(!teams || !teams.length) 
-        return <div className="no-teams">Aucune équipe disponible</div>
-
     return (
         <SubSection className='current team-list'>
+            {(!teams || !teams.length) ?
+            <div className="no-teams">Aucune équipe disponible</div> :
             <table>
-                <thead></thead>
+                <thead>
+                    <th className="">Image</th>
+                    <th className="">Nom</th>
+                    <th className="">Sport</th>
+                    <th className="">Ville</th>
+                    <th className="">Coach</th>
+                    <th className="">Date de fondation</th>
+                    <th className="">Description</th>
+                    <th className="">Joueurs</th>
+                    <th className="">Actions</th>
+                </thead>
                 <tbody>
                     {
                         teams.map(team => (
@@ -22,7 +31,7 @@ const TeamList = () => {
                         ))
                     }
                 </tbody>
-            </table>
+            </table>}
         </SubSection>
     )
 }

@@ -1,9 +1,23 @@
 
 main {
+  position: relative;
   min-height: calc(100vh - var(--header-height) - 70px);
   display: flex;
   align-items: center;
   padding: 0 100px;
+}
+
+main::after {
+  content: '';
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/img/sport-1.png') center/cover  no-repeat;
+  filter: blur(3px);
+  opacity: .3;
 }
 
 .banner {
@@ -11,6 +25,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  font-weight: bold;
 }
 
 .banner button {
@@ -19,7 +34,6 @@ main {
   font-size: 1.2em;
   border-radius: 5px;
   background-color: #5d63d7;
-  
 }
 
 .banner button:hover {

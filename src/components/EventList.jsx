@@ -10,13 +10,12 @@ const EventList = () => {
     const { data: events, showDetails, toggleDetails } = useData();
     const [currentEvent, setCurrentEvent] = useState(null);
 
-    if(!events || !events.length) 
-        return <div className="no-events">Aucun évènement disponible</div>
-
     return (
         <>
             <SubSection className='current event-list'>
-            {events.map(event => (
+            {(!events || !events.length) ?
+            <div className="no-events">Aucun évènement disponible</div>:
+            events.map(event => (
                 <Event 
                     key={`event-${event.id}`}
                     onClick={() => {

@@ -7,7 +7,19 @@ const PlayerList = () => {
 
     return (
         <SubSection className="current player-list">
+            {(!players || !players.length) ?
+            <div className="no-players">Aucun joueur disponible</div> :
             <table>
+                <thead>
+                    <th className="">Image</th>
+                    <th className="">Nom</th>
+                    <th className="">Age</th>
+                    <th className="">Sexe</th>
+                    <th className="">Sport</th>
+                    <th className="">Poste</th>
+                    <th className="">Statistiques</th>
+                    <th className="">Actions</th>
+                </thead>
                 <tbody>
                 {
                     players.map(player => (
@@ -15,7 +27,7 @@ const PlayerList = () => {
                     ))
                 }
                 </tbody>
-            </table>
+            </table>}
         </SubSection>
     )
 }
