@@ -1,7 +1,7 @@
 
-# Cahier de charges
+# Sports Event Manager
 
-## Projet : *Application de gestion d'événements sportifs*
+## *Application de gestion d'événements sportifs*
 
 ### Auteur du projet
 
